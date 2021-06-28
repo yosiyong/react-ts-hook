@@ -1,62 +1,88 @@
 import { VFC } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { UserProfile } from "../types/userProfile";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import { Wrap, WrapItem, Box } from "@chakra-ui/react";
 
 type Props = {
   user: UserProfile;
 };
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)"
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
-  }
-});
-
 export const UserCard: VFC<Props> = (props) => {
   const { user } = props;
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          名前
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {user.name}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          メール
-        </Typography>
-        <Typography variant="body2" component="p">
-          {user.email}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          住所
-        </Typography>
-        <Typography variant="body2" component="p">
-          {user.address}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Wrap>
+      <WrapItem>
+        <Box maxW="sm" borderWidth="3px" borderRadius="lg" overflow="hidden">
+          <Box p="6">
+            <Box d="flex" alignItems="baseline">
+              <Box
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="xs"
+                textTransform="uppercase"
+                ml="2"
+              >
+                名前
+              </Box>
+            </Box>
+
+            <Box
+              mt="1"
+              fontWeight="semibold"
+              as="h4"
+              lineHeight="tight"
+              isTruncated
+            >
+              {user.name}
+            </Box>
+            <Box d="flex" alignItems="baseline">
+              <Box
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="xs"
+                textTransform="uppercase"
+                ml="2"
+              >
+                メールアドレス
+              </Box>
+            </Box>
+
+            <Box
+              mt="1"
+              fontWeight="semibold"
+              as="h4"
+              lineHeight="tight"
+              isTruncated
+            >
+              {user.email}
+            </Box>
+            <Box d="flex" alignItems="baseline">
+              <Box
+                color="gray.500"
+                fontWeight="semibold"
+                letterSpacing="wide"
+                fontSize="xs"
+                textTransform="uppercase"
+                ml="2"
+              >
+                住所
+              </Box>
+            </Box>
+
+            <Box
+              mt="1"
+              fontWeight="semibold"
+              as="h4"
+              lineHeight="tight"
+              isTruncated
+            >
+              {user.address}
+            </Box>
+          </Box>
+        </Box>
+      </WrapItem>
+    </Wrap>
   );
 };
